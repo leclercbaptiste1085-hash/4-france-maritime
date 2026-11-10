@@ -46,6 +46,13 @@ Norvège / France : 9.2
 3 France      8.48   5.98
 4 Pays-Bas   46.9   42.2 
 
+== Fret fluvial par km de réseau, 2025 (millions de t-km par km) ==
+       pays   km mtkm_par_km
+1  Pays-Bas 4800         8.8
+2 Allemagne 7300         5.8
+3  Belgique 1500         4.7
+4    France 8500         0.7
+
 == Part modale du fret, 2024 (%) ==
 # A tibble: 4 × 4
   pays        IWW  RAIL  ROAD

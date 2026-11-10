@@ -54,8 +54,8 @@ g1 <- ggplot(aqua, aes(annee, kt, group = pays)) +
   scale_colour_manual(values = c(`TRUE` = balise, `FALSE` = encre)) +
   scale_linewidth_manual(values = c(`TRUE` = 1.6, `FALSE` = 0.6)) +
   scale_x_continuous(expand = expansion(mult = c(0.01, 0.13))) +
-  scale_y_continuous(labels = label_number(big.mark = " "), expand = c(0, 0)) +
-  labs(title = sprintf("La Norvège cultive %.0f fois plus la mer que la France", ratio_no),
+  scale_y_continuous(labels = label_number(big.mark = " "), expand = expansion(mult = c(0, 0.06))) +
+  labs(title = sprintf("La Norvège élève %.0f fois plus de poissons\net de coquillages que la France", ratio_no),
        subtitle = "Production aquacole, milliers de tonnes (poids vif)",
        x = NULL, y = NULL,
        caption = "Source : Eurostat, fish_aq2a (toutes espèces, tous milieux).")
@@ -119,10 +119,17 @@ fluv <- eurostat("eurostat_fluvial.csv") |>
   mutate(md = v / 1000)  # milliards de t-km
 
 fl_der <- max(fluv$annee)
-g4 <- ggplot(fluv, aes(annee, md, group = pays)) +
+
+# Intensité d'usage : fret rapporté à la longueur du réseau (km, Cour des comptes 2025, tableau 1)
+longueur_km <- c(FR = 8500, DE = 7300, NL = 4800, BE = 1500)
+intensite <- fluv |> filter(annee == fl_der) |>
+  mutate(km = longueur_km[geo], mtkm_par_km = round(v / km, 1))
+lib_int <- with(intensite, paste0(pays, " ", format(mtkm_par_km, decimal.mark = ","))[order(-mtkm_par_km)])
+
+g4 <-ggplot(fluv, aes(annee, md, group = pays)) +
   geom_line(aes(colour = geo == "FR", linewidth = geo == "FR")) +
   geom_text(data = filter(fluv, annee == fl_der) |>
-              mutate(dy = case_when(geo == "DE" ~ 1.5, geo == "NL" ~ -1.5, TRUE ~ 0)),
+              mutate(dy = case_when(geo %in% c("DE", "BE") ~ 1.5, geo %in% c("NL", "FR") ~ -1.5, TRUE ~ 0)),
             aes(y = md + dy, label = pays, colour = geo == "FR"),
             hjust = -0.12, family = "Georgia", size = 3.8) +
   scale_colour_manual(values = c(`TRUE` = balise, `FALSE` = encre)) +
@@ -130,10 +137,11 @@ g4 <- ggplot(fluv, aes(annee, md, group = pays)) +
   scale_x_continuous(expand = expansion(mult = c(0.01, 0.15))) +
   scale_y_continuous(limits = c(0, NA), expand = c(0, 0)) +
   labs(title = "Le plus long réseau navigable d'Europe mais l'un des moins utilisés",
-       subtitle = "Fret fluvial, milliards de tonnes-kilomètres",
+       subtitle = paste0("Fret fluvial, milliards de tonnes-kilomètres\nPar km de voie en ", fl_der,
+                         " (millions de t-km) : ", paste(lib_int, collapse = " ; ")),
        x = NULL, y = NULL,
-       caption = paste("Source : Eurostat, iww_go_atygo. La France compte 8 500 km de voies navigables,",
-                       "\ndont 5 600 km au gabarit Freycinet fixé en 1879 (Cour des comptes, 2025)."))
+       caption = paste("Sources : Eurostat, iww_go_atygo ; longueurs des réseaux : Cour des comptes (2025).",
+                       "\nLa France compte 8 500 km de voies navigables, dont 5 600 km au gabarit Freycinet fixé en 1879."))
 enregistrer(g4, "4_fluvial.png")
 
 modes <- c(ROAD = "Route", RAIL = "Rail", IWW = "Fleuve")
@@ -175,6 +183,8 @@ print(ent |> arrange(entreprise, exercice) |> select(entreprise, exercice, ca_m,
 cat("\n== Fret fluvial (milliards de t-km) ==\n")
 print(fluv |> filter(annee %in% c(2015, fl_der)) |> select(pays, annee, md) |>
         pivot_wider(names_from = annee, values_from = md))
+cat("\n== Fret fluvial par km de réseau,", fl_der, "(millions de t-km par km) ==\n")
+print(intensite |> select(pays, km, mtkm_par_km) |> arrange(-mtkm_par_km))
 cat("\n== Part modale du fret,", unique(modal$annee), "(%) ==\n")
 print(modal |> select(pays, tra_mode, v) |> pivot_wider(names_from = tra_mode, values_from = v))
 sink()

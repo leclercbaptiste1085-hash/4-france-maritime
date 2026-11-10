@@ -32,7 +32,10 @@ des cinq entreprises dont l'activité sert directement la surveillance et la con
 La mer ne s'arrête pas au littoral ; elle se prolonge par les fleuves. Or la France possède le plus long réseau navigable
 d'Europe, 8 500 km, et s'en sert de moins en moins. Le fret fluvial est passé de 12,7 milliards de tonnes-kilomètres en 1970
 à 5,6 milliards en 2023, son plus bas historique (Cour des comptes) ; le fleuve ne porte plus que 1,8 % des marchandises,
-contre 40 % aux Pays-Bas (Eurostat).
+contre 40 % aux Pays-Bas (Eurostat). Rapporté à la longueur du réseau, l'écart se creuse encore : en 2025, chaque kilomètre
+de voie navigable française a porté 0,7 million de tonnes-kilomètres, contre 4,7 en Belgique, 5,8 en Allemagne et 8,8 aux
+Pays-Bas. Le Rhin, qui apporte à ces deux derniers un important trafic de transit, explique une partie de la différence ;
+la Belgique, qui n'en bénéficie pas, fait pourtant près de sept fois mieux.
 
 La raison tient moins à la nature du transport fluvial qu'à l'état du réseau. Sur ces 8 500 km, 5 600 relèvent encore du
 gabarit fixé par la loi Freycinet de 1879, conçu pour des péniches de moins de 400 tonnes ; aux Pays-Bas et en Allemagne,
