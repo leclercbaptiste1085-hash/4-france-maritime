@@ -1,0 +1,56 @@
+== Aquaculture, 2024 (milliers de tonnes) ==
+# A tibble: 4 × 3
+  pays    `2008` `2024`
+  <chr>    <dbl>  <dbl>
+1 Espagne   252.  246. 
+2 France    238.  181. 
+3 Italie    158.   98.1
+4 Norvège   848. 1667. 
+
+Norvège / France : 9.2 
+
+== Entreprises (M€ et marge nette en %) ==
+# A tibble: 23 × 4
+   entreprise         exercice  ca_m marge
+   <fct>                 <int> <dbl> <dbl>
+ 1 Bénéteau               2021 1227.   6  
+ 2 Bénéteau               2022 1251.   8.2
+ 3 Bénéteau               2023 1465.  12.6
+ 4 Bénéteau               2024 1034.   9  
+ 5 Bénéteau               2025  849.  -5.1
+ 6 Fountaine Pajot        2022  220.  NA  
+ 7 Fountaine Pajot        2023  277.  NA  
+ 8 Fountaine Pajot        2024  352    9.5
+ 9 Fountaine Pajot        2025  323.   9.3
+10 Catana Group           2021  102.  13.9
+11 Catana Group           2022  149.  10.7
+12 Catana Group           2023  207.   9.3
+13 Catana Group           2024  230.  12.9
+14 Catana Group           2025  175.   7.8
+15 Exail Technologies     2022  180.  -4.5
+16 Exail Technologies     2023  323.   5.2
+17 Exail Technologies     2024  373.  -1  
+18 Exail Technologies     2025  479.   0.6
+19 GTT                    2021  315.  42.6
+20 GTT                    2022  307.  41.7
+21 GTT                    2023  428.  47.1
+22 GTT                    2024  641.  54.2
+23 GTT                    2025  803   51.5
+
+== Fret fluvial (milliards de t-km) ==
+# A tibble: 4 × 3
+  pays      `2015` `2025`
+  <chr>      <dbl>  <dbl>
+1 Belgique   10.4    7.08
+2 Allemagne  55.3   42.7 
+3 France      8.48   5.98
+4 Pays-Bas   46.9   42.2 
+
+== Part modale du fret, 2024 (%) ==
+# A tibble: 4 × 4
+  pays        IWW  RAIL  ROAD
+  <fct>     <dbl> <dbl> <dbl>
+1 Belgique   11    11    78  
+2 Allemagne   7    20.3  72.7
+3 France      1.8   9.8  88.3
+4 Pays-Bas   40.4   5.9  53.7
